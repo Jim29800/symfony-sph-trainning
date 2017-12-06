@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\TraTravaux" table="tra_travaux">
+    <indexes>
+      <index name="cli_oid" columns="cli_oid"/>
+    </indexes>
+    <id name="traOid" type="integer" column="tra_oid">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="traTitre" type="string" column="tra_titre" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="traDescription" type="string" column="tra_description" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="traPrix" type="float" column="tra_prix" precision="10" scale="0" nullable="true"/>
+    <field name="traDateDebut" type="date" column="tra_date_debut" nullable="true"/>
+    <field name="traDateDevis" type="date" column="tra_date_devis" nullable="true"/>
+    <field name="traDateRappel" type="date" column="tra_date_rappel" nullable="true"/>
+    <field name="traModePaiment" type="string" column="tra_mode_paiment" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="traVerif" type="boolean" column="tra_verif" nullable="false"/>
+    <many-to-one field="cliOid" target-entity="CliClient" fetch="LAZY">
+      <join-columns>
+        <join-column name="cli_oid" referenced-column-name="cli_oid"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

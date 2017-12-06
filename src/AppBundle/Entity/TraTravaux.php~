@@ -1,0 +1,92 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TraTravaux
+ *
+ * @ORM\Table(name="tra_travaux", indexes={@ORM\Index(name="cli_oid", columns={"cli_oid"})})
+ * @ORM\Entity
+ */
+class TraTravaux
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tra_titre", type="string", length=50, nullable=true)
+     */
+    private $traTitre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tra_description", type="string", length=255, nullable=true)
+     */
+    private $traDescription;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="tra_prix", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $traPrix;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="tra_date_debut", type="date", nullable=true)
+     */
+    private $traDateDebut;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="tra_date_devis", type="date", nullable=true)
+     */
+    private $traDateDevis;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="tra_date_rappel", type="date", nullable=true)
+     */
+    private $traDateRappel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tra_mode_paiment", type="string", length=50, nullable=true)
+     */
+    private $traModePaiment;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="tra_verif", type="boolean", nullable=false)
+     */
+    private $traVerif;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tra_oid", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $traOid;
+
+    /**
+     * @var \AppBundle\Entity\CliClient
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\CliClient")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cli_oid", referencedColumnName="cli_oid")
+     * })
+     */
+    private $cliOid;
+
+
+}
+

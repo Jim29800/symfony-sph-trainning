@@ -1,0 +1,89 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * CliClient
+ *
+ * @ORM\Table(name="cli_client")
+ * @ORM\Entity
+ */
+class CliClient
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cli_nom", type="string", length=250, nullable=true)
+     */
+    private $cliNom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cli_prenom", type="string", length=250, nullable=true)
+     */
+    private $cliPrenom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cli_email", type="string", length=250, nullable=true)
+     */
+    private $cliEmail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cli_adresse", type="string", length=500, nullable=true)
+     */
+    private $cliAdresse;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cli_cp", type="string", length=5, nullable=true)
+     */
+    private $cliCp;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cli_ville", type="string", length=100, nullable=true)
+     */
+    private $cliVille;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cli_tel", type="string", length=12, nullable=true)
+     */
+    private $cliTel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cli_commentaire", type="text", length=65535, nullable=true)
+     */
+    private $cliCommentaire;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cli_provenance", type="string", length=50, nullable=true)
+     */
+    private $cliProvenance;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cli_oid", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $cliOid;
+
+
+}
+

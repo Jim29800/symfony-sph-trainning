@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\ComCommentaire" table="com_commentaire">
+    <indexes>
+      <index name="tra_oid" columns="tra_oid"/>
+      <index name="uti_oid" columns="uti_oid"/>
+    </indexes>
+    <id name="comOid" type="integer" column="com_oid">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="comCommentaire" type="text" column="com_commentaire" length="65535" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="traOid" target-entity="TraTravaux" fetch="LAZY">
+      <join-columns>
+        <join-column name="tra_oid" referenced-column-name="tra_oid"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="utiOid" target-entity="UtiUtilisateur" fetch="LAZY">
+      <join-columns>
+        <join-column name="uti_oid" referenced-column-name="uti_oid"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

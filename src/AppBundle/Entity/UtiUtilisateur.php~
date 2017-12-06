@@ -1,0 +1,61 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * UtiUtilisateur
+ *
+ * @ORM\Table(name="uti_utilisateur", uniqueConstraints={@ORM\UniqueConstraint(name="uti_pseudo", columns={"uti_pseudo"})})
+ * @ORM\Entity
+ */
+class UtiUtilisateur
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="uti_pseudo", type="string", length=50, nullable=true)
+     */
+    private $utiPseudo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="uti_nom", type="string", length=50, nullable=true)
+     */
+    private $utiNom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="uti_prenom", type="string", length=50, nullable=true)
+     */
+    private $utiPrenom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="uti_mdp", type="string", length=250, nullable=true)
+     */
+    private $utiMdp;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="uti_autorisation", type="integer", nullable=false)
+     */
+    private $utiAutorisation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="uti_oid", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $utiOid;
+
+
+}
+
