@@ -13,7 +13,16 @@ class TraTravauxType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('traTitre')->add('traDescription')->add('traPrix')->add('traDateDebut')->add('traDateDevis')->add('traDateRappel')->add('traModePaiment')->add('traVerif')->add('cliOid');
+        $builder
+        ->add('traTitre', null, ["label" => "Titre"])
+        ->add('traDescription', null, ["label" => "Déscription"])
+        ->add('traPrix', null, ["label" => "Prix"])
+        ->add('traDateDebut', null, ["label" => "Date du début des travaux"])
+        ->add('traDateDevis', null, ["label" => "Date de la signature du devis"])
+        ->add('traDateRappel', null, ["label" => "Date de rappel"])
+        ->add('traModePaiment', null, ["label" => "Mode de paiement"])
+        ->add('traVerif', null, ["label" => "Chantier vérifier"])
+;
     }
     
     /**

@@ -1,0 +1,50 @@
+{% extends 'layout/layout.html.twig' %}
+{# add this at the beginning of your template #}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block body %}
+<div id="affiche">
+    <button class="btn btn-block">Ajouter un chantier</button>
+    <br>
+</div>
+<div id="ajout_client" style="display:none">
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_widget(form.save, {'attr': {'class': 'btn btn-success btn-block'}}) }} 
+    {{ form_end(form) }}
+</div>
+
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Desciption</th>
+            <th>Prix</th>
+            <th>Date début</th>
+            <th>Date Devis</th>
+            <th>Date Rappel</th>
+            <th>Mode de paiement</th>          
+        </tr>
+    </thead>
+    <tbody>
+        {% for chantier in chantiers %}
+            <tr> 
+                <td>{{ chantier.traTitre }}</td>
+                <td>{{ chantier.traDescription }}</td> 
+                <td>{{ chantier.traPrix }}</td> 
+                <td>{{ chantier.traDateDebut|date("d/m/Y") }}</td>
+                <td>{{ chantier.traDateDevis|date("d/m/Y") }}</td>
+                <td>{{ chantier.traDateRappel|date("d/m/Y") }}</td>
+                <td>{{ chantier.traModePaiment }}</td> 
+                
+                
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+{% block lien %}
+<script src="../client/client.js"></script>
+{% endblock %}
