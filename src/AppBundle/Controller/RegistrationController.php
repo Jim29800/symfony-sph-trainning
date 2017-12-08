@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Controller managing the registration.
@@ -62,8 +63,11 @@ class RegistrationController extends Controller
                 $userManager->updateUser($user);
 
                 if (null === $response = $event->getResponse()) {
-                    $url = $this->generateUrl('fos_user_registration_confirmed');
-                    $response = new RedirectResponse($url);
+                    // $url = $this->generateUrl('fos_user_registration_confirmed');
+                    // $response = new RedirectResponse($url);
+                    //$response = new Response("L'utilisateur ".$user." à bien été ajouté.");
+                    $response = $this->render("default/index.html.twig",["nouveau_utilsateur" => $user]);
+                    
                 }
 
                 //$dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
