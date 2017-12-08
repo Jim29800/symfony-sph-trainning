@@ -5,6 +5,8 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 
 class TraTravauxType extends AbstractType
 {
@@ -15,13 +17,13 @@ class TraTravauxType extends AbstractType
     {
         $builder
         ->add('traTitre', null, ["label" => "Titre"])
-        ->add('traDescription', null, ["label" => "Déscription"])
-        ->add('traPrix', null, ["label" => "Prix"])
-        ->add('traDateDebut', null, ["label" => "Date du début des travaux"])
-        ->add('traDateDevis', null, ["label" => "Date de la signature du devis"])
-        ->add('traDateRappel', null, ["label" => "Date de rappel"])
+        ->add('traDescription', TextareaType::class, ["label" => "Déscription"])
+        ->add('traPrix', MoneyType::class, ["label" => "Prix", ])
+        ->add('traDateDebut', null, ["label" => "Date du début des travaux", 'widget' => 'single_text'])
+        ->add('traDateDevis', null, ["label" => "Date de la signature du devis", 'widget' => 'single_text'])
+        ->add('traDateRappel', null, ["label" => "Date de rappel", 'widget' => 'single_text'])
         ->add('traModePaiment', null, ["label" => "Mode de paiement"])
-        ->add('traVerif', null, ["label" => "Chantier vérifier"])
+        //->add('traVerif', null, ["label" => "Chantier vérifier"])
 ;
     }
     

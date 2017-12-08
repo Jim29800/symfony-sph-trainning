@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class CliClientType extends AbstractType
 {
@@ -22,7 +23,14 @@ class CliClientType extends AbstractType
             ->add('cliVille', null,["label" => "Ville"])
             ->add('cliTel', null,["label" => "Téléphone"])
             ->add('cliCommentaire', null,["label" => "Commentaire"])
-            ->add('cliProvenance', null,["label" => "Provenance"]);
+            ->add('cliProvenance', ChoiceType::class,
+                 array("label" => "Provenance",
+                        'choices'  => array(
+                                        'WEB' => 'WEB',
+                                        'PROSPECTION' => 'PROSPECTION',
+                                        )
+                        )
+                    );
     }
     
     /**

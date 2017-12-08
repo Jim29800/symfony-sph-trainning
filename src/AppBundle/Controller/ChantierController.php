@@ -11,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-
 /**
  * @Route("/chantier")
  */
@@ -51,6 +50,86 @@ class ChantierController extends Controller
             "form" => $form->createView(),
         ]);
     }
+    /**
+     * @Route("/creation", name="chantier.creation")
+     */
+    public function creationAction(Request $request)
+    {
+        $idclient = $request->request->get('idclient');
+
+
+        $client = $this->getDoctrine()->getRepository("AppBundle:CliClient")->find($idclient);
+
+        $chantier = new TraTravaux();
+        
+        $chantier->setTraVerif(0);
+        $chantier->setCliOid($client);
+        
+        
+        
+        $form = $this->createForm(TraTravauxType::class, $chantier);
+
+        $form->add("save", SubmitType::class, array('label' => 'Enregistrer le Chantier'));
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($chantier);
+            $em->flush();
+            return $this->redirectToRoute("client.fiche", ["id" => $idclient]);
+        }
+
+
+        return $this->render("chantier/creation.html.twig", [
+            "form" => $form->createView(),
+            "idclient" => $idclient,
+        ]);
+    }
+
+    /**
+     * @Route("/fiche/{id}", name="chantier.fiche", requirements={"id"="\d+"})
+     */
+    public function ficheAction($id, Request $request)
+    {
+        $chantier = $this->getDoctrine()->getRepository("AppBundle:TraTravaux")->find($id);
+
+
+        $form = $this->createForm(TraTravauxType::class, $chantier);
+        $form->add('traVerif', null, ["label" => "Chantier vérifier"]);
+        $form->add("save", SubmitType::class, array('label' => 'Enregistrer les modifications'));
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($chantier);
+            $em->flush();
+            $this->addFlash(
+                'note',
+                'Les modification sont enregitrés!'
+            );
+
+            return $this->redirectToRoute("chantier.fiche", ["id" => $id]);
+        }
+
+
+        return $this->render("chantier/fiche.html.twig", [
+            "chantier" => $chantier,
+            "form" => $form->createView(),
+        ]);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -1,0 +1,29 @@
+{% extends 'layout/layout.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+
+
+{% block body %}
+<a class="btn btn-info" href="/client/fiche/{{ chantier.cliOid.cliOid }}">Revenir sur la fiche client</a>
+<h1>{{ chantier.cliOid.cliNom }}
+    {{ chantier.cliOid.cliPrenom }} - 
+    {{ chantier.cliOid.cliCp }}
+    {{ chantier.cliOid.cliVille }}
+    
+</h1>
+
+{% for message in app.flashes('note') %}
+    <div class="flash-notice">
+        <h2>{{ message }}</h2>
+    </div>
+{% endfor %}
+
+{{ form_start(form) }}
+{{ form_widget(form.save, {'attr': {'class': 'btn btn-success btn-block'}}) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+
+
+
+{% endblock %}
+

@@ -3,16 +3,6 @@
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
 
 {% block body %}
-<div id="affiche">
-    <button class="btn btn-block">Ajouter un chantier</button>
-    <br>
-</div>
-<div id="ajout_client" style="display:none">
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_widget(form.save, {'attr': {'class': 'btn btn-success btn-block'}}) }} 
-    {{ form_end(form) }}
-</div>
 
 
 <table class="table table-bordered table-striped table-hover">

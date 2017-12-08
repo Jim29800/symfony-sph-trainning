@@ -1,0 +1,86 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block body %}
+
+
+    {% for message in app.flashes('note') %}
+        <div class="flash-notice">
+            <h2>{{ message }}</h2>
+        </div>
+    {% endfor %}
+
+
+    {{ form_start(form) }}
+    {{ form_widget(form.save, {'attr': {'class': 'btn btn-success btn-block'}}) }}
+    <div class="col-xs-6">
+    {{ form_label(form.cliNom) }}        
+    {{ form_widget(form.cliNom) }}
+    </div>
+        <div class="col-xs-6">
+            {{ form_label(form.cliPrenom) }}    
+            {{ form_widget(form.cliPrenom) }}
+        </div>
+        <div class="col-xs-4">
+            {{ form_label(form.cliTel) }}
+            {{ form_widget(form.cliTel) }}
+        </div>
+        <div class="col-xs-4">
+            {{ form_label(form.cliEmail) }}
+            {{ form_widget(form.cliEmail) }}
+        </div>
+        <div class="col-xs-4">
+            {{ form_label(form.cliProvenance) }}
+            {{ form_widget(form.cliProvenance) }}
+        </div>
+        <div class="col-xs-12">
+            {{ form_label(form.cliAdresse) }}
+            {{ form_widget(form.cliAdresse) }}
+        </div>
+        <div class="col-xs-4">
+            {{ form_label(form.cliCp) }}
+            {{ form_widget(form.cliCp) }}
+        </div>
+        <div class="col-xs-8">
+            {{ form_label(form.cliVille) }}
+            {{ form_widget(form.cliVille) }}
+        </div>
+        <div class="col-xs-12">
+            {{ form_label(form.cliCommentaire) }}
+            {{ form_widget(form.cliCommentaire) }}
+        </div>
+        <br />
+    {{ form_end(form) }}
+    <form action="/chantier/creation" method="post">
+<input type="hidden" name="idclient" value= {{ idclient }} >
+        <button type="submit" class="btn btn-warning btn-block">Ajouter un chantier</button>
+    </form>
+
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Prix</th>
+            <th>Début des travaux</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for chantier in chantiers %}
+            <tr data-href="/chantier/fiche/{{ chantier.traOid }}">
+                <td>{{ chantier.traTitre }}</td>
+                <td>{{ chantier.traDescription }}</td>
+                <td>{{ chantier.traPrix }}</td>
+                <td>{{ chantier.traDateDebut|date('d-m-Y') }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+
+{% block lien %}
+    <script src="../client.js"></script>
+{% endblock %}

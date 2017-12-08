@@ -1,0 +1,39 @@
+{% extends 'layout/layout.html.twig' %}
+{# add this at the beginning of your template #}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block body %}
+        {{ form_start(form) }}
+<div class="col-xs-8">
+    {{ form_label(form.traTitre) }}
+    {{ form_widget(form.traTitre) }}
+</div>
+<div class="col-xs-4">
+    {{ form_label(form.traPrix) }}
+    {{ form_widget(form.traPrix) }}
+</div>
+<div class="col-xs-12">
+    {{ form_label(form.traDescription) }}
+    {{ form_widget(form.traDescription) }}
+</div>
+<div class="col-xs-4">
+    {{ form_label(form.traDateDebut) }}
+    {{ form_widget(form.traDateDebut) }}
+</div>
+<div class="col-xs-4">
+    {{ form_label(form.traDateDevis) }}
+    {{ form_widget(form.traDateDevis) }}
+</div>
+<div class="col-xs-4">
+    {{ form_label(form.traDateRappel) }}
+    {{ form_widget(form.traDateRappel) }}
+</div>
+<div class="col-xs-4">
+    {{ form_label(form.traModePaiment) }}
+    {{ form_widget(form.traModePaiment) }}
+</div>
+<input type="hidden" name="idclient" value={{ idclient }}>
+
+        {{ form_widget(form.save, {'attr': {'class': 'btn btn-success btn-block'}}) }}
+        {{ form_end(form) }}
+{% endblock %}

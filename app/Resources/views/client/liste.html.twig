@@ -8,10 +8,46 @@
     <br>
 </div>
 <div id="ajout_client" style="display:none">
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_widget(form.save, {'attr': {'class': 'btn btn-success btn-block'}}) }} 
-    {{ form_end(form) }}
+{{ form_start(form) }}
+<div class="col-xs-6">
+    {{ form_label(form.cliNom) }}
+    {{ form_widget(form.cliNom) }}
+</div>
+<div class="col-xs-6">
+    {{ form_label(form.cliPrenom) }}
+    {{ form_widget(form.cliPrenom) }}
+</div>
+<div class="col-xs-4">
+    {{ form_label(form.cliTel) }}
+    {{ form_widget(form.cliTel) }}
+</div>
+<div class="col-xs-4">
+    {{ form_label(form.cliEmail) }}
+    {{ form_widget(form.cliEmail) }}
+</div>
+<div class="col-xs-4">
+    {{ form_label(form.cliProvenance) }}
+    {{ form_widget(form.cliProvenance) }}
+</div>
+<div class="col-xs-12">
+    {{ form_label(form.cliAdresse) }}
+    {{ form_widget(form.cliAdresse) }}
+</div>
+<div class="col-xs-4">
+    {{ form_label(form.cliCp) }}
+    {{ form_widget(form.cliCp) }}
+</div>
+<div class="col-xs-8">
+    {{ form_label(form.cliVille) }}
+    {{ form_widget(form.cliVille) }}
+</div>
+<div class="col-xs-12">
+    {{ form_label(form.cliCommentaire) }}
+    {{ form_widget(form.cliCommentaire) }}
+</div>
+<br/>
+{{ form_widget(form.save, {'attr': {'class': 'btn btn-success btn-block'}}) }}
+{{ form_end(form) }}
 </div>
 
 
@@ -31,7 +67,7 @@
     </thead>
     <tbody>
         {% for client in clients %}
-            <tr> 
+            <tr data-href="/client/fiche/{{ client.cliOid }}">
                 <td>{{ client.cliNom }}</td>
                 <td>{{ client.cliPrenom }}</td> 
                 <td>{{ client.cliEmail }}</td> 
@@ -41,8 +77,6 @@
                 <td>{{ client.cliTel }}</td> 
                 <td>{{ client.cliCommentaire }}</td> 
                 <td>{{ client.cliProvenance }}</td> 
-                
-                
             </tr>
         {% endfor %}
     </tbody>
