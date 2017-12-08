@@ -64,7 +64,7 @@ class ClientController extends Controller
             $em->flush();
             $this->addFlash(
                 'note',
-                'Les modification sont enregitrés!'
+                'Les modifications sont enregitrées!'
             );
 
             return $this->redirectToRoute("client.fiche", ["id" => $id]);

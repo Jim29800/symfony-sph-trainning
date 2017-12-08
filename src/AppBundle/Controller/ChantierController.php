@@ -24,7 +24,7 @@ class ChantierController extends Controller
         $listClient = $this->getDoctrine()->getRepository("AppBundle:CliClient")->findAll();
         $client = $listClient[0];
 
-        $liste = $this->getDoctrine()->getRepository("AppBundle:TraTravaux")->findAll();
+        $liste = $this->getDoctrine()->getRepository("AppBundle:TraTravaux")->findBy(array(), array('traDateDebut' => 'ASC'));
 
         $chantier = new TraTravaux();
         $form = $this->createForm(TraTravauxType::class, $chantier);
@@ -105,7 +105,7 @@ class ChantierController extends Controller
             $em->flush();
             $this->addFlash(
                 'note',
-                'Les modification sont enregitrés!'
+                'Les modifications sont enregitrées!'
             );
 
             return $this->redirectToRoute("chantier.fiche", ["id" => $id]);
