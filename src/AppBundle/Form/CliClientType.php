@@ -24,7 +24,7 @@ class CliClientType extends AbstractType
             ->add('cliTel', null,["label" => "Téléphone"])
             ->add('cliCommentaire', null,["label" => "Commentaire"])
             ->add('cliProvenance', ChoiceType::class,
-                 array("label" => "Provenance",
+                array("label" => "Provenance",
                         'choices'  => array(
                                         'WEB' => 'WEB',
                                         'PROSPECTION' => 'PROSPECTION',

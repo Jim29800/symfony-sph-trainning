@@ -19,7 +19,7 @@
     </thead>
     <tbody>
         {% for chantier in chantiers %}
-            <tr> 
+            <tr data-href="/chantier/fiche/{{ chantier.traOid }}">
                 <td>{{ chantier.traTitre }}</td>
                 <td>{{ chantier.traDescription }}</td> 
                 <td>{{ chantier.traPrix }}</td> 
